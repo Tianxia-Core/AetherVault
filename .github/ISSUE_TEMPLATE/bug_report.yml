@@ -1,0 +1,17 @@
+name: Bug Report
+description: Report a functional or cryptographic verification defect in AetherVault
+labels: ["bug"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Version & Target Platform
+      placeholder: v2.0.0 / linux-x86_64
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to Reproduce (Never include real passphrases or secrets)
+    validations:
+      required: true
