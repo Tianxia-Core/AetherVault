@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.enc
+*.svlt
+*.meta
+.master.key
+vault_audit.jsonl
+dist/
+bin/
+/AetherVault
+/AetherVault.exe
+.env
+.env.*

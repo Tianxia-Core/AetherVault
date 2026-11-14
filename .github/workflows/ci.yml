@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Python cryptography & run tests
+        run: |
+          python -m pip install --upgrade pip cryptography
+          PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests -v
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+      - name: Run Go unit tests & cross-compile matrix
+        run: |
+          go test -race -v ./...
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o dist/AetherVault-linux-x86_64 ./cmd/aethervault
+          CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -trimpath -ldflags="-s -w" -o dist/AetherVault-linux-aarch64 ./cmd/aethervault
+          CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o dist/AetherVault-windows-x86_64.exe ./cmd/aethervault
