@@ -8,8 +8,30 @@
 
 `AetherVault` provides both a **zero-CGO static executable** (`cmd/aethervault`, 100% Go standard library) and a **Python library & CLI** (`tx_secrets_vault.py`) for authenticated at-rest secret storage across Linux (`x86_64`, `aarch64`), Windows (`x86_64`), and Android (`aarch64`).
 
+<!-- BUILD_LAW_SHOWCASE_START -->
+
 ---
 
+## 🌍 In Plain English — What `AetherVault` Is & Why It Matters (Layman's Guide)
+
+- **The Everyday Problem:** Storing API keys in `.env` files leaves plaintext secrets sitting on disk where any rogue npm script, backup leak, or AI coding agent can accidentally read and expose them.
+- **How It Works (Without the Jargon):** `AetherVault` locks credentials inside an authenticated `AES-256-GCM` / `XChaCha20-Poly1305` encrypted enclave (`chmod 0600`), injects secrets only at runtime without writing them to config files, and records every access in a tamper-evident HMAC audit log.
+- **Why It Is Different:** Open-source (`MIT`), offline-capable, zero SaaS subscription required, and engineered as the canonical secret-custody layer of **[Build Law](https://github.com/Tianxia-Core/Build-Law)**.
+- **How It Benefits You:** Solo developers and enterprise teams eliminate `.env` leaks, protect AI MCP servers from credential exposure, and gain instant cryptographic auditability.
+- **How to Install & Use It in 60 Seconds:** Grab the signed standalone executable from Releases or build from source (`go build`), then initialize your vault with `secrets-vault init`.
+
+---
+
+## 🏛️ Governed by [`Build Law`](https://github.com/Tianxia-Core/Build-Law) — Engineering Philosophy & Stakeholder Pathways
+
+This repository is a live production showcase of **[`Build Law`](https://github.com/Tianxia-Core/Build-Law)**—the open-source (`MIT`) **4-Pillar, 14-Gate Constitutional Engineering & `5.0×–8.8×` Token-Efficiency Standard** created by **[Collins Takem](https://rasaxmachina.com/collins)** (**RASA-X-MACHINA**):
+- **Developers & AI Builders:** Drop **[`Build Law`](https://github.com/Tianxia-Core/Build-Law)** into Claude Code, Cursor, OpenCode, VS Code (`.vsix`), GitHub Copilot, Windsurf, Cline, Aider, or any chat LLM in 60 seconds.
+- **CTOs & B2B Engineering Leaders:** Need similar `Rust`/`Go`/`Nix`/Security/FinOps rigor applied to your infrastructure? Scope a fixed-price **72-Hour `VRTTI` Architecture Sprint** at **[vrtti.rasaxmachina.com](https://vrtti.rasaxmachina.com)**.
+- **Investors, Researchers, Press & Executive Hiring Committees:** Inspect our cryptographic release proofs across **[`@Tianxia-Core`](https://github.com/Tianxia-Core)**, press assets at **[rasaxmachina.com/press](https://rasaxmachina.com/press)**, and founder dossier at **[rasaxmachina.com/collins](https://rasaxmachina.com/collins)**.
+
+<!-- BUILD_LAW_SHOWCASE_END -->
+
+---
 ## Cryptographic Architecture
 
 | Layer | Static Go Executable (`AetherVault`) | Python Library & CLI (`tx_secrets_vault.py`) |
